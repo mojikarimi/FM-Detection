@@ -1,82 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Free Open Source Task Tracker using Python">
-    <meta name="author" content="Farzad Asgari - https://github.com/farzadasgari - https://farzadasgari.ir">
-    <title>TaskPyTrack | Track Tasks With Python</title>
-    <!-- Google Fonts -->
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
-    <!-- Font Awesome CSS -->
-    <link href="../Static/Plugins/fontawesome/css/all.css" rel="stylesheet">
-    <!-- Material CSS -->
-
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.4.95/css/materialdesignicons.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="../Static/Styles/TPT.css" rel="stylesheet">
-    <link href="../Static/Styles/main.css" rel="stylesheet">
-    <style>
-        .accordion-button::after {
-            background-image: initial;
-        }
-
-        .accordion-button:not(.collapsed)::after {
-            background-image: initial;
-        }
-    </style>
-
-    <!-- Calender -->
-    <script src="https://jsuites.net/v4/jsuites.js"></script>
-    <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css"/>
-    <!-- For Webcam   -->
-
-
-</head>
-
-<body id="page-top">
-
-<!-- Page Wrapper -->
-<div id="wrapper">
-
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./Index.html">
-            <div class="sidebar-brand-icon">
-                <img src="../Static/Images/logo.png" class="sidebar-logo"
-                     style="width: 50px;">
-            </div>
-        </a>
-
-        <!-- Nav Item -->
-        <li class="nav-item">
-            <a class="nav-link" href="./video.html">
-                <i class="fas fa-fw fa-video" style="font-size: 30px"></i>
-
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="./image.html">
-                <i class="fas fa-fw fa-image" style="font-size: 30px"></i>
-
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="./camera.html">
-                <i class="fas fa-fw fa-camera" style="font-size: 30px"></i>
-
-            </a>
-        </li>
-
-        <!-- Add Task Modal -->
-
-    </ul>
-    <!-- End of Sidebar -->
-
+{% extends 'base.html' %}
+{% block content %}
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -159,18 +82,5 @@
 
     </div>
     <!-- End of Content Wrapper -->
+{% endblock %}
 
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- JQuery JS -->
-<script src="../Static/Plugins/jquery/jquery.js"></script>
-<!--{#<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}-->
-<script src="../Static/Plugins/bootstrap/bundle.js"></script>
-<!-- Custom JS -->
-<script src="../Static/Scripts/TPT.js"></script>
-<!-- For Webcam -->
-<script src="../Static/Scripts/webcam.js"></script>
-</body>
-
-</html>
