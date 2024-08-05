@@ -1,6 +1,6 @@
 <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./Index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
             <div class="sidebar-brand-icon">
                 <img src="../Static/Images/logo.png" class="sidebar-logo"
                      style="width: 50px;">
@@ -9,19 +9,19 @@
 
         <!-- Nav Item -->
         <li class="nav-item">
-            <a class="nav-link" href="./video.html">
+            <a class="nav-link" href="{% url 'video_page' %}">
                 <i class="fas fa-fw fa-video" style="font-size: 30px"></i>
 
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="./image.html">
+            <a class="nav-link" href="{% url 'image_page' %}">
                 <i class="fas fa-fw fa-image" style="font-size: 30px"></i>
 
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="./camera.html">
+            <a class="nav-link" href="{% url 'webcam_page' %}">
                 <i class="fas fa-fw fa-camera" style="font-size: 30px"></i>
 
             </a>
