@@ -1,9 +1,13 @@
 from django.shortcuts import render
-
+from main.models import Duc
 
 # Create your views here.
 def index(request):
-    return render(request, 'main/index.html')
+    ducs=Duc.objects.all()
+    context={
+        'ducs':ducs,
+    }
+    return render(request, 'main/index.html',context=context)
 
 
 def video_page(request):

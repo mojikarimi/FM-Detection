@@ -47,7 +47,9 @@
 
                 <!-- Content Row -->
                 <div class="row">
-                    <div class="col-xl-12 col-md-12 p-1">
+                    {% if ducs %}
+                    	{% for duc in ducs %}
+                    		<div class="col-xl-12 col-md-12 p-1">
                         <div class="card shadow mb-1">
                             <!-- Card Header - Accordion -->
                             <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
@@ -55,55 +57,19 @@
                                    data-toggle="collapse"
                                    role="button" aria-expanded="false" aria-controls="task-title">
                                     <h6 class="m-0 font-weight-bold text-primary">
-                                        A Text For You
+                                        {{ duc.title }}
                                     </h6>
                                 </a>
-                                <div class="card-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
-                                    eum explicabo laudantium qui! Architecto deserunt dolores eligendi, enim, est,
-                                    facere ipsum laborum magnam neque officia omnis recusandae saepe sunt totam.
+                                <div class="card-body">{{ duc.text|safe }}
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-12 col-md-12 p-1">
-                        <div class="card shadow mb-1">
-                            <!-- Card Header - Accordion -->
-                            <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                                <a href="#" class="d-block card-header py-3 w-75"
-                                   data-toggle="collapse"
-                                   role="button" aria-expanded="false" aria-controls="task-title">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        A Text For You
-                                    </h6>
-                                </a>
-                                <div class="card-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
-                                    eum explicabo laudantium qui! Architecto deserunt dolores eligendi, enim, est,
-                                    facere ipsum laborum magnam neque officia omnis recusandae saepe sunt totam.
-                                </div>
+                    	{% endfor %}
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12 col-md-12 p-1">
-                        <div class="card shadow mb-1">
-                            <!-- Card Header - Accordion -->
-                            <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                                <a href="#" class="d-block card-header py-3 w-75"
-                                   data-toggle="collapse"
-                                   role="button" aria-expanded="false" aria-controls="task-title">
-                                    <h6 class="m-0 font-weight-bold text-primary">
-                                        A Text For You
-                                    </h6>
-                                </a>
-                                <div class="card-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores
-                                    eum explicabo laudantium qui! Architecto deserunt dolores eligendi, enim, est,
-                                    facere ipsum laborum magnam neque officia omnis recusandae saepe sunt totam.
-                                </div>
+                    {% endif %}
 
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>
