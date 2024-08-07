@@ -1,8 +1,9 @@
+{% load static %}
 <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
             <div class="sidebar-brand-icon">
-                <img src="../Static/Images/logo.png" class="sidebar-logo"
+                <img src="{% static 'Images/logo.png' %}" class="sidebar-logo"
                      style="width: 50px;">
             </div>
         </a>
