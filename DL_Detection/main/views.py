@@ -68,7 +68,38 @@ def video_page(request):
 
 
 def image_page(request):
-    return render(request, 'main/image.html')
+    files = FilesPredicts.objects.filter(~Q(original_file__endswith='.mp4'))
+    context = {'files': files}
+    if request.method == 'POST':
+        image = request.FILES.get('image')
+        if image:
+            model = settings.MODEL
+            fs = FileSystemStorage(location=f'{settings.MEDIA_URL[1:]}image_originals/')
+            filename = fs.save(image.name, image)
+            # create object
+            file = FilesPredicts()
+            file.original_file = image.name
+            file.original_file_url = fs.url(f'image_originals/{image.name}')
+            path_img = f'{settings.MEDIA_ROOT}\\image_originals\\{filename}'
+            img = cv2.imread(path_img)
+            face_cascade = settings.FACE_MODEL
+            faces = face_cascade.detectMultiScale(img, 1.2, 5)
+            if np.any(faces):
+                for (x, y, w, h) in faces:
+                    my_img = cv2.resize(img[y:y + h, x:x + w], (125, 125))
+                    y_pred = model.predict(my_img.reshape(1, 125, 125, 3))
+                    if y_pred[0, 0] == 1:
+                        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 5)
+                    else:
+                        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 5)
+                cv2.imwrite(f'media/image_predicts/pred_{filename}', img)
+                file.Prediction_file = f'pred_{filename}'
+                file.Prediction_file_url = f'media/image_predicts/pred_{filename}'
+            else:
+                pass
+        file.save()
+        return redirect('image_page')
+    return render(request, 'main/image.html', context=context)
 
 
 def webcam_page(request):
