@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-	 <!-- Content Wrapper -->
+    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
@@ -16,7 +16,6 @@
                         </small>
                     </h2>
                 </div>
-
 
 
                 <!-- GitHub -->
@@ -53,24 +52,66 @@
 
 
                             <div class="file-upload">
-                                <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                                <button class="file-upload-btn" type="button"
+                                        onclick="$('.file-upload-input').trigger( 'click' )">Add Image
+                                </button>
 
                                 <div class="image-upload-wrap">
-                                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
-                                    <div class="drag-text">
-                                        <h3>Drag and drop a file or select add Image</h3>
-                                    </div>
+                                    <form id="FMD" method="post" action="{% url 'image_page' %}"
+                                          enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <input class="file-upload-input" type='file' name="image"
+                                               onchange="readURL(this);" accept="image/*"/>
+                                        <div class="drag-text">
+                                            <h3>Drag and drop a file or select add Image</h3>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="file-upload-content">
-                                    <img class="file-upload-image" src="#" alt="your image" />
+                                    <img class="file-upload-image" src="#" alt="your image"/>
                                     <div class="image-title-wrap">
-                                        <button type="button" onclick="removeUpload()" class="remove-image">Remove</button>
-                                        <button type="submit" class="submit-image">Submit</button>
+                                        <button type="button" onclick="removeUpload()" class="remove-image">Remove
+                                        </button>
+                                        <button form="FMD" id="element_button" onclick="sub_but()" type="submit" class="submit-image">Submit </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {% if files %}
+                    	{% for file in files %}
+                    		<div class="col-xl-12 col-md-12">
+                        <div class="card shadow mb-1">
+                            <!-- Card Header - Accordion -->
+                            <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
+                                <a href="#task-title-{{ file.pk }}" class="d-block card-header py-3 w-75"
+                                   data-toggle="collapse"
+                                   role="button" aria-expanded="false" aria-controls="task-title">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        {{ file.original_file }}
+                                    </h6>
+                                </a>
+
+                            </div>
+                            <div class="collapse" id="task-title-{{ file.pk }}">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h6 class="text-primary">Original Image:</h6>
+                                            <img src="{{ file.original_file_url }}" width="400" height="300">
+                                        </div>
+                                        <div class="col-6">
+                                            <h6 class="text-primary">Predict Image:</h6>
+                                            <img src="{{ file.Prediction_file_url }}" width="400" height="300">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    	{% endfor %}
+
+                    {% endif %}
 
                 </div>
 
