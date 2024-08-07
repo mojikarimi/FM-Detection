@@ -21,6 +21,8 @@
     <link href="{% static 'Styles/main.css' %}" rel="stylesheet">
     <!--  file uploader   -->
     <link href="{% static 'Styles/drag_drop_upload_file.css' %}" rel="stylesheet">
+    <!--  icon   -->
+    <link href="{% static 'Images/icon.png' %}" rel="icon">
 </head>
 
 <body id="page-top">
@@ -39,11 +41,13 @@
 <script src="{% static 'Plugins/bootstrap/bundle.js' %}"></script>
 <!-- Custom JS -->
 <script src="{% static 'Scripts/FMD.js' %}"></script>
-
+<script src="{% static 'Scripts/custom.js' %}"></script>
 <!-- file uploader -->
 <script src="{% static 'Scripts/drag_drop_upload_file.js' %}"></script>
 <!-- webcam -->
-<script src="{% static 'Scripts/webcam.js' %}"></script>
+{% block script %}
+	
+{% endblock %}
 </body>
 
 </html>
