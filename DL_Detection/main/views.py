@@ -1,5 +1,11 @@
-from django.shortcuts import render
-from main.models import Duc
+from django.shortcuts import render, redirect
+from main.models import Duc, FilesPredicts
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+import cv2
+import numpy as np
+from django.db.models import Q
+from django.http import StreamingHttpResponse
 
 # Create your views here.
 def index(request):
