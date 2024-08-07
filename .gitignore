@@ -2,7 +2,10 @@ venv/*
 .idea/*
 DL_Detection/.idea/*
 DL_Detection/model/*
-media/*
+media/image_originals/*
+media/image_predicts/*
+media/video_originals/*
+media/video_originals/*
 db.sqlite3
 DL_Detection/model/haarcascade_frontalface_default.xml
 DL_Detection/model/model_9843_0528.pkl
