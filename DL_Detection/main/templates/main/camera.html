@@ -49,14 +49,15 @@
                     <div class="col-xl-12 col-md-12 p-1">
                         <div class="card shadow mb-1">
                             <!-- Card Header - Accordion -->
-                            <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                                <div id="basic" class="webcam">
-                                    <video class="webcam" width="400" height="300" autoplay=""></video>
-                                    <div class="webcam-button">
-                                        <button class="capture-button btn btn-primary">Start</button>
-                                        <button id="stop-button" class="btn btn-danger">Stop</button>
-                                    </div>
+                            <div class="row mr-1 ml-1 row" style="background-color:#f8f9fc">
+                                <div id="basic" class="webcam webcam-button col-md-12">
+
                                 </div>
+                                <div class="webcam webcam-button  col-md-12">
+                                        <button id="start_button" onclick="start()" class="btn btn-primary">Start
+                                        </button>
+                                        <button id="stop_button" onclick="stop()" class="btn btn-danger">Stop</button>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -82,5 +83,29 @@
 
     </div>
     <!-- End of Content Wrapper -->
-{% endblock %}
 
+{% endblock %}
+{% block script %}
+    <script>
+        function start() {
+            const basic = document.getElementById('basic');
+            const webcam_str = document.getElementById('webcam_str');
+            const img = document.createElement('img');
+            if (webcam_str) {
+                console.log('webcam is starting !!!')
+            } else {
+                img.setAttribute('src', "{% url 'webcam_stream' %}");
+                img.setAttribute('id', "webcam_str");
+                basic.appendChild(img);
+            }
+        }
+
+        function stop() {
+            const webcam_str = document.getElementById('webcam_str');
+            if (webcam_str) {
+                webcam_str.src = '#'
+                webcam_str.remove();
+            }
+        }
+    </script>
+{% endblock %}
