@@ -133,3 +133,10 @@ class VideoCamera(object):
         frame_flip = cv2.flip(image, 1)
         ret, jpeg = cv2.imencode('.jpg', frame_flip)
         return jpeg.tobytes()
+
+
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
