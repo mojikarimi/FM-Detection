@@ -122,3 +122,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# read model
+import pickle
+import cv2
+
+F = open(f'{BASE_DIR}\\model\\model_9843_0528.pkl', 'rb')
+MODEL = pickle.load(F)
+FACE_MODEL = cv2.CascadeClassifier(f'{BASE_DIR}/model/haarcascade_frontalface_default.xml')
