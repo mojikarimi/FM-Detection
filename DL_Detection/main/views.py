@@ -104,3 +104,6 @@ def image_page(request):
 
 def webcam_page(request):
     return render(request, 'main/camera.html')
+
+def webcam_stream(request):
+    return StreamingHttpResponse(gen(VideoCamera()), content_type="multipart/x-mixed-replace; boundary=frame")
