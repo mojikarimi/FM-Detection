@@ -7,5 +7,4 @@ urlpatterns = [
     re_path(r'^video_detection$', video_page, name='video_page'),
     re_path(r'^webcam_detection$', webcam_page, name='webcam_page'),
     re_path(r'^webcam_stream$', webcam_stream, name='webcam_stream'),
-
 ]
