@@ -107,3 +107,29 @@ def webcam_page(request):
 
 def webcam_stream(request):
     return StreamingHttpResponse(gen(VideoCamera()), content_type="multipart/x-mixed-replace; boundary=frame")
+
+class VideoCamera(object):
+    def __init__(self):
+        self.video = cv2.VideoCapture(0)
+
+    def __del__(self):
+        self.video.release()
+
+    def get_frame(self):
+        model = settings.MODEL
+        success, image = self.video.read()
+        face_cascade = settings.FACE_MODEL
+        faces = face_cascade.detectMultiScale(image, 1.2, 5)
+        if np.any(faces):
+            for (x, y, w, h) in faces:
+                my_img = cv2.resize(image[y:y + h, x:x + w], (125, 125))
+                y_pred = model.predict(my_img.reshape(1, 125, 125, 3))
+                if y_pred[0, 0] == 1:
+                    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 5)
+                else:
+                    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 5)
+        else:
+            pass
+        frame_flip = cv2.flip(image, 1)
+        ret, jpeg = cv2.imencode('.jpg', frame_flip)
+        return jpeg.tobytes()
