@@ -127,6 +127,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import pickle
 import cv2
 
-F = open(f'{BASE_DIR}\\model\\model_9843_0528.pkl', 'rb')
+F = open(f'{BASE_DIR}\\model\\model_9850_0486.pkl', 'rb')
 MODEL = pickle.load(F)
 FACE_MODEL = cv2.CascadeClassifier(f'{BASE_DIR}/model/haarcascade_frontalface_default.xml')

@@ -43,11 +43,11 @@ def video_page(request):
                 if not success:
                     break
                 face_cascade = settings.FACE_MODEL
-                faces = face_cascade.detectMultiScale(img, 1.2, 5)
+                faces = face_cascade.detectMultiScale(img, 1.3, 5)
                 if np.any(faces):
                     for (x, y, w, h) in faces:
-                        my_img = cv2.resize(img[y:y + h, x:x + w], (125, 125))
-                        y_pred = model.predict(my_img.reshape(1, 125, 125, 3))
+                        my_img = cv2.resize(img[y:y + h, x:x + w], (100, 100))
+                        y_pred = model.predict(my_img.reshape(1, 100, 100, 3))
                         if y_pred[0, 0] == 1:
                             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 5)
                         else:
@@ -83,11 +83,11 @@ def image_page(request):
             path_img = f'{settings.MEDIA_ROOT}\\image_originals\\{filename}'
             img = cv2.imread(path_img)
             face_cascade = settings.FACE_MODEL
-            faces = face_cascade.detectMultiScale(img, 1.2, 5)
+            faces = face_cascade.detectMultiScale(img, 1.3, 5)
             if np.any(faces):
                 for (x, y, w, h) in faces:
-                    my_img = cv2.resize(img[y:y + h, x:x + w], (125, 125))
-                    y_pred = model.predict(my_img.reshape(1, 125, 125, 3))
+                    my_img = cv2.resize(img[y:y + h, x:x + w], (100, 100))
+                    y_pred = model.predict(my_img.reshape(1, 100, 100, 3))
                     if y_pred[0, 0] == 1:
                         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 5)
                     else:
@@ -119,11 +119,11 @@ class VideoCamera(object):
         model = settings.MODEL
         success, image = self.video.read()
         face_cascade = settings.FACE_MODEL
-        faces = face_cascade.detectMultiScale(image, 1.2, 5)
+        faces = face_cascade.detectMultiScale(image, 1.3, 5)
         if np.any(faces):
             for (x, y, w, h) in faces:
-                my_img = cv2.resize(image[y:y + h, x:x + w], (125, 125))
-                y_pred = model.predict(my_img.reshape(1, 125, 125, 3))
+                my_img = cv2.resize(image[y:y + h, x:x + w], (100, 100))
+                y_pred = model.predict(my_img.reshape(1, 100, 100, 3))
                 if y_pred[0, 0] == 1:
                     cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 5)
                 else:
