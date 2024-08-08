@@ -7,4 +7,4 @@ media/image_predicts/*
 media/video_originals/*
 media/video_predicts/*
 db.sqlite3
-DL_Detection/model/model_9843_0528.pkl
+DL_Detection/model/model_9850_0486.pkl
