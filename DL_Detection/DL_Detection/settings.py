@@ -130,3 +130,11 @@ import cv2
 F = open(f'{BASE_DIR}\\model\\model_9850_0486.pkl', 'rb')
 MODEL = pickle.load(F)
 FACE_MODEL = cv2.CascadeClassifier(f'{BASE_DIR}/model/haarcascade_frontalface_default.xml')
+
+# create dir for Media
+if 'media' not in os.listdir(BASE_DIR):
+    os.mkdir(f'{BASE_DIR}/media')
+    os.mkdir(f'{BASE_DIR}/media/image_predicts')
+    os.mkdir(f'{BASE_DIR}/media/image_originals')
+    os.mkdir(f'{BASE_DIR}/media/video_predicts')
+    os.mkdir(f'{BASE_DIR}/media/video_originals')
