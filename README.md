@@ -86,6 +86,7 @@ To deploy [`FM-Detection`](https://github.com/mojikarimi/FM-Detection) on your l
 2. **Install Dependencies**: Navigate to the project directory and install the required dependencies:
 
 > cd FM-Detection
+
 > pip install -r requirements.txt
 
 3. **Train model**: Go to the Train-Model directory and run the existing notebook and place the output model in the
@@ -98,6 +99,7 @@ To deploy [`FM-Detection`](https://github.com/mojikarimi/FM-Detection) on your l
 4. **Apply Migrations**: Apply Django migrations to set up the database schema:
 
 > python manage.py makemigrations
+
 > python manage.py migrate
 
 5. **Run the Development Server**: Launch the development server to start TaskPyTrack:
