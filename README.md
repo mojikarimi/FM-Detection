@@ -81,30 +81,38 @@ To deploy [`FM-Detection`](https://github.com/mojikarimi/FM-Detection) on your l
 
 1. **Clone the Repository**: Clone this repository to your local machine using the following command:
 
-> git clone https://github.com/mojikarimi/FM-Detection.git
+```
+git clone https://github.com/mojikarimi/FM-Detection.git
+```
 
 2. **Install Dependencies**: Navigate to the project directory and install the required dependencies:
 
-> cd FM-Detection
-
-> pip install -r requirements.txt
+```
+cd FM-Detection
+pip install -r requirements.txt
+```
 
 3. **Train model**: Go to the Train-Model directory and run the existing notebook and place the output model in the
    following path.
 
 **Hint:** Train the model according to the instructions in the notebook file and place the data set paths correctly.
 
-> DL_Detection/model/
+```
+DL_Detection/model/
+``` 
 
 4. **Apply Migrations**: Apply Django migrations to set up the database schema:
 
-> python manage.py makemigrations
-
-> python manage.py migrate
+```
+python manage.py makemigrations
+python manage.py migrate
+```
 
 5. **Run the Development Server**: Launch the development server to start TaskPyTrack:
 
-> python manage.py runserver
+```
+python manage.py runserver
+```
 
 6. **Access FM-Detection**: Open your web browser and visit http://127.0.0.1:8000/ to access the FM-Detection
    application.
