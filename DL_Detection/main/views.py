@@ -6,14 +6,16 @@ import cv2
 import numpy as np
 from django.db.models import Q
 from django.http import StreamingHttpResponse
+import cvzone
+
 
 # Create your views here.
 def index(request):
-    ducs=Duc.objects.all()
-    context={
-        'ducs':ducs,
+    ducs = Duc.objects.all()
+    context = {
+        'ducs': ducs,
     }
-    return render(request, 'main/index.html',context=context)
+    return render(request, 'main/index.html', context=context)
 
 
 def video_page(request):
@@ -50,18 +52,27 @@ def video_page(request):
                         y_pred = model.predict(my_img.reshape(1, 100, 100, 3))
                         if y_pred[0, 0] == 1:
                             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 5)
+                            cvzone.putTextRect(img,
+                                               f'No Mask',
+                                               (x, y - 2), scale=3, thickness=1,
+                                               offset=2, colorR=(214, 45, 36))
                         else:
                             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 5)
+                            cvzone.putTextRect(img,
+                                               f'Mask',
+                                               (x, y - 2), scale=3, thickness=1,
+                                               offset=2, colorR=(214, 45, 36))
                 else:
                     pass
 
                 output.write(img)
                 if vid.get(cv2.CAP_PROP_POS_FRAMES) == vid.get(cv2.CAP_PROP_FRAME_COUNT):
-                    file.Prediction_file = f'pred_{filename}'
-                    file.Prediction_file_url = f'/media/video_predicts/pred_{filename}'
                     break
             vid.release()
             cv2.destroyAllWindows()
+            file.Prediction_file = f'pred_{filename}'
+            file.Prediction_file_url = f'/media/video_predicts/pred_{filename}'
+
         file.save()
         return redirect('video_page')
     return render(request, 'main/video.html', context=context)
@@ -90,13 +101,22 @@ def image_page(request):
                     y_pred = model.predict(my_img.reshape(1, 100, 100, 3))
                     if y_pred[0, 0] == 1:
                         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 5)
+                        cvzone.putTextRect(img,
+                                           f'No Mask',
+                                           (x, y - 2), scale=2, thickness=1,
+                                           offset=2, colorR=(214, 45, 36))
                     else:
                         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 5)
-                cv2.imwrite(f'media/image_predicts/pred_{filename}', img)
-                file.Prediction_file = f'pred_{filename}'
-                file.Prediction_file_url = f'media/image_predicts/pred_{filename}'
+                        cvzone.putTextRect(img,
+                                           f'Mask',
+                                           (x, y - 2), scale=2, thickness=1,
+                                           offset=2, colorR=(214, 45, 36))
+                    cv2.imwrite(f'media/image_predicts/pred_{filename}', img)
+                    file.Prediction_file = f'pred_{filename}'
+                    file.Prediction_file_url = f'media/image_predicts/pred_{filename}'
             else:
                 pass
+
         file.save()
         return redirect('image_page')
     return render(request, 'main/image.html', context=context)
@@ -105,8 +125,10 @@ def image_page(request):
 def webcam_page(request):
     return render(request, 'main/camera.html')
 
+
 def webcam_stream(request):
     return StreamingHttpResponse(gen(VideoCamera()), content_type="multipart/x-mixed-replace; boundary=frame")
+
 
 class VideoCamera(object):
     def __init__(self):
@@ -118,6 +140,7 @@ class VideoCamera(object):
     def get_frame(self):
         model = settings.MODEL
         success, image = self.video.read()
+        image = cv2.flip(image, 1)
         face_cascade = settings.FACE_MODEL
         faces = face_cascade.detectMultiScale(image, 1.3, 5)
         if np.any(faces):
@@ -125,13 +148,25 @@ class VideoCamera(object):
                 my_img = cv2.resize(image[y:y + h, x:x + w], (100, 100))
                 y_pred = model.predict(my_img.reshape(1, 100, 100, 3))
                 if y_pred[0, 0] == 1:
+                    cvzone.putTextRect(image,
+                                       f'No Mask',
+                                       (x, y - 2), scale=2, thickness=1,
+                                       offset=2, colorR=(214, 45, 36))
                     cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 5)
+
+
                 else:
+                    cvzone.putTextRect(image,
+                                       f'Mask',
+                                       (x, y - 2), scale=2, thickness=1,
+                                       offset=2, colorR=(214, 45, 36))
                     cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 5)
+
+
         else:
+
             pass
-        frame_flip = cv2.flip(image, 1)
-        ret, jpeg = cv2.imencode('.jpg', frame_flip)
+        ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
 
 

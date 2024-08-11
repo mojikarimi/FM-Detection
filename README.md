@@ -65,15 +65,15 @@ practical scenarios, such as autonomous vehicles, security camera systems, and o
 
 1. ### Webcam Detection:
 
-![Webcam Detection Example]()
+![Webcam Detection Example](exmple_media/example_webcam.gif)
 
 2. ### Video Detection:
 
-![Video Detection Example]()
+![Video Detection Example](exmple_media/example_video.gif)
 
 3. ### Image Detection:
 
-![Image Detection Example]()
+![Image Detection Example](exmple_media/example_image.gif)
 
 ## Installation:
 
@@ -141,4 +141,9 @@ the LICENSE file for details.
 
 For any inquiries, feedback, or support requests, please don't hesitate to reach out to the project maintainer at
 moji.k1381@gmail.com
+
+
+## Resources:
+
+Template: [`TaskPyTrack`](https://github.com/farzadasgari/TaskPyTrack)
 
