@@ -8,7 +8,7 @@
 [![GitHub Issues](https://img.shields.io/github/issues/mojikarimi/FM-Detection)](https://github.com/mojikarimi/FM-Detection/issues)
 [![GitHub License](https://img.shields.io/github/license/mojikarimi/FM-Detection)](https://github.com/mojikarimi/FM-Detection/blob/main/LICENSE)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/mojikarimi/FM-Detection)](https://github.com/mojikarimi/FM-Detection/pulls)
-[![GitHub last commit](https://img.shields.io/github/last-commit/mojikarimi/FM-Detection)(https://github.com/mojikarimi/FM-Detection/commits/main)
+[![GitHub last commit](https://img.shields.io/github/last-commit/mojikarimi/FM-Detection)]https://github.com/mojikarimi/FM-Detection/commits/main)
 
 Masks play an important role in protecting people’s health from respiratory diseases, as they are one of the few
 precautions available for COVID-19 in the absence of immunization. Using this NoteBook, a model can be created to
