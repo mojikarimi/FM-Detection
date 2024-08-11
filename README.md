@@ -65,15 +65,15 @@ practical scenarios, such as autonomous vehicles, security camera systems, and o
 
 1. ### Webcam Detection:
 
-![Webcam Detection Example](exmple_media/example_webcam.gif)
+![Webcam Detection Example](exmple_media/example_webcam.mp4)
 
 2. ### Video Detection:
 
-![Video Detection Example](exmple_media/example_video.gif)
+![Video Detection Example](exmple_media/example_video.mp4)
 
 3. ### Image Detection:
 
-![Image Detection Example](exmple_media/example_image.gif)
+![Image Detection Example](exmple_media/example_image.mp4)
 
 ## Installation:
 
